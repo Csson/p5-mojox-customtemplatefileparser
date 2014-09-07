@@ -3,7 +3,7 @@ package MojoX::CustomTemplateFileParser;
 use strict;
 use warnings;
 use 5.10.1;
-our $VERSION = '0.02';
+our $VERSION = '0.03';
 
 use Mojo::Base -base;
 use Path::Tiny();
