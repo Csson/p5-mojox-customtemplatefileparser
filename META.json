@@ -36,7 +36,7 @@
       },
       "runtime" : {
          "requires" : {
-            "Mojo::Base" : "5.00",
+            "Mojolicious" : "5.00",
             "Path::Tiny" : "0.050",
             "perl" : "5.010"
          }

@@ -16,11 +16,11 @@ Unstable.
 
 # DESCRIPTION
 
-MojoX::CustomTemplateFileParser parses files containing [Mojo::Template](https://metacpan.org/pod/Mojo::Template)s mixed with the expected rendering.
+MojoX::CustomTemplateFileParser parses files containing [Mojo::Templates](https://metacpan.org/pod/Mojo::Template) mixed with the expected rendering.
 
 The parsing creates a data structure that also can be dumped into a string ready to be put in a [Test::More](https://metacpan.org/pod/Test::More) file.
 
-It's purpose is to facilitate development of tag helpers.
+Its purpose is to facilitate development of tag helpers.
 
 ## Options
 
@@ -46,19 +46,29 @@ Given a file (`metacpan-1.mojo`) that looks like this:
 
     ==test==
     --t--
-    %= link_to 'MetaCPAN', 'http://www.metacpan.org/'
+        %= link_to 'MetaCPAN', 'http://www.metacpan.org/'
     --t--
     --e--
-    <a href="http://www.metacpan.org/">MetaCPAN</a>
+        <a href="http://www.metacpan.org/">MetaCPAN</a>
     --e--
 
     ==test==
     --t--
-    %= text_field username => placeholder => 'Enter name'
+        %= text_field username => placeholder => 'Enter name'
     --t--
     --e--
-    <input name="username" placeholder="Enter name" type="text" />
+        <input name="username" placeholder="Enter name" type="text" />
     --e--
+
+    ==no test==
+    --t--
+        %= text_field username => placeholder => 'Not tested'
+    --t--
+    --e--
+        <input name="username" placeholder="Not tested" type="text" />
+    --e--
+
+(Note the `no test` on the third test.)
 
 Running `$self->parse` will fill `$self->structure` with:
 
@@ -74,7 +84,7 @@ Running `$self->parse` will fill `$self->structure` with:
                         test_name => 'metacpan_1_1',
                         test_start_line => 4,
                         lines_before => [''],
-                        lines_template => [" %= link_to 'MetaCPAN', 'http://www.metacpan.org/" ],
+                        lines_template => [ "%= link_to 'MetaCPAN', 'http://www.metacpan.org/" ],
                         lines_between => [''],
                         lines_expected => [ '<a href="http://www.metacpan.org/">MetaCPAN</a>' ],
                         lines_after => ['',''],
