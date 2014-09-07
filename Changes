@@ -1,6 +1,8 @@
 Revision history for MojoX-CustomTemplateFileParser
 
 {{$NEXT}}
+	- Added support for ==test loop(var var2)== syntax to easily create
+	  similar tests where only one value is different
 
 0.02  2014-09-07 16:42:25 CEST
 	- The test is skipped if the template part of a test is empty
