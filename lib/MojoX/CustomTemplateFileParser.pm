@@ -409,7 +409,7 @@ And C<$self-E<gt>flatten> returns:
         %= text_field username => placeholder => 'name'
 
 
-And then all that remains is putting in a header. See L<Dist::Zilla::Plugin::Test::CreateFromMojoTemplates>.
+The easiest way to is it is with L<Dist::Zilla::Plugin::Test::CreateFromMojoTemplates>.
 
 =head1 AUTHOR
 
@@ -423,7 +423,5 @@ Copyright 2014- Erik Carlsson
 
 This library is free software; you can redistribute it and/or modify
 it under the same terms as Perl itself.
-
-=head1 SEE ALSO
 
 =cut

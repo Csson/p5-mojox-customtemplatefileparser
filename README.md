@@ -91,7 +91,7 @@ Running `$self->parse` will fill `$self->structure` with:
                 lines_before => [''],
                 lines_between => [''],
                 lines_expected => [ '    <a href="http://www.metacpan.org/">MetaCPAN</a>' ],
-                lines_template => [ "    %= link_to 'MetaCPAN', 'http://www.metacpan.org/" ],
+                lines_template => [ "    %= link_to 'MetaCPAN', 'http://www.metacpan.org/'" ],
                 loop => [],
                 loop_variable => undef,
                 test_name => 'test_1_1',
@@ -102,7 +102,7 @@ Running `$self->parse` will fill `$self->structure` with:
                 lines_after => ['', ''],
                 lines_before => [''],
                 lines_between => [''],
-                lines_expected => [ '    <input name="username" placeholder="[var]" type="text" />' ],
+                lines_expected => [ '    <input name="username" placeholder="first" type="text" />' ],
                 lines_template => [ "    %= text_field username => placeholder => 'first'" ],
                 loop => [ 'first', 'name' ],
                 loop_variable => 'first',
@@ -114,7 +114,7 @@ Running `$self->parse` will fill `$self->structure` with:
                 lines_after => ['', ''],
                 lines_before => [''],
                 lines_between => [''],
-                lines_expected => [ '    <input name="username" placeholder="[var]" type="text" />' ],
+                lines_expected => [ '    <input name="username" placeholder="name" type="text" />' ],
                 lines_template => [ "    %= text_field username => placeholder => 'name'" ],
                 loop => [ 'first', 'name' ],
                 loop_variable => 'name',
@@ -169,7 +169,7 @@ And `$self->flatten` returns:
 
         %= text_field username => placeholder => 'name'
 
-And then all that remains is putting in a header. See [Dist::Zilla::Plugin::Test::CreateFromMojoTemplates](https://metacpan.org/pod/Dist::Zilla::Plugin::Test::CreateFromMojoTemplates).
+The easiest way to is it is with [Dist::Zilla::Plugin::Test::CreateFromMojoTemplates](https://metacpan.org/pod/Dist::Zilla::Plugin::Test::CreateFromMojoTemplates).
 
 # AUTHOR
 
@@ -183,5 +183,3 @@ Copyright 2014- Erik Carlsson
 
 This library is free software; you can redistribute it and/or modify
 it under the same terms as Perl itself.
-
-# SEE ALSO
