@@ -6,15 +6,19 @@ use 5.10.1;
 our $VERSION = '0.01';
 
 use Mojo::Base -base;
+use Path::Tiny();
 
 has path => undef;
-has structure => [];
+has structure => sub { { } };
 
 sub flatten {
     my $self = shift;
     my $baseurl = $self->_get_baseurl;
     my $filename = $self->_get_filename;
 
+    if(!scalar keys %{ $self->structure }) {
+        $self->parse;
+    }
     my $info = $self->structure;
 
     my @parsed = join "\n" => @{ $info->{'head_lines'} };
@@ -38,13 +42,13 @@ sub flatten {
         push @parsed => join "\n" => @{ $test->{'lines_template'} };
     }
 
-    return join "\n\n" => @parsed;
+    return join ("\n\n" => @parsed) . "\n";
 }
 
 sub parse {
     my $self = shift;
-    my $baseurl = shift;
-    my @lines = @_;
+    my $baseurl = $self->_get_baseurl;
+    my @lines = split /\n/ => Path::Tiny::path($self->path)->slurp;
 
     my $test_start = qr/==TEST(?: EXAMPLE)?(?: (\d+))?==/i;
     my $template_separator = '--t--';
@@ -157,10 +161,7 @@ sub _reset_test {
 }
 
 sub _get_filename {
-    my $self = shift;
-    my $path = $self->path;
-    (my $filename = $path) =~ s{.*/([^/]*$)}{$1};      # remove path
-    return $filename;
+    return Path::Tiny::path(shift->path)->basename;
 }
 
 sub _get_baseurl {
@@ -188,6 +189,10 @@ MojoX::CustomTemplateFileParser - Parses a custom Mojo template file format
 
   print $content;
 
+=head1 STATUS
+
+Unstable.
+
 =head1 DESCRIPTION
 
 MojoX::CustomTemplateFileParser parses files containing L<Mojo::Template>s mixed with the expected rendering.
@@ -214,7 +219,87 @@ Returns a string that is suitable to put in a L<Test::More> test file.
 
 =head1 Example
 
+Given a file (C<metacpan-1.mojo>) that looks like this:
 
+    # Code here
+
+    ==test==
+    --t--
+    %= link_to 'MetaCPAN', 'http://www.metacpan.org/'
+    --t--
+    --e--
+    <a href="http://www.metacpan.org/">MetaCPAN</a>
+    --e--
+
+    ==test==
+    --t--
+    %= text_field username => placeholder => 'Enter name'
+    --t--
+    --e--
+    <input name="username" placeholder="Enter name" type="text" />
+    --e--
+
+Running C<$self-E<gt>parse> will fill C<$self-E<gt>structure> with:
+
+    {
+        head_lines => ['',
+                       '# Code here',
+                       '',
+                       ''
+                      ],
+        tests => [
+                    {
+                        test_number => 1,
+                        test_name => 'metacpan_1_1',
+                        test_start_line => 4,
+                        lines_before => [''],
+                        lines_template => [" %= link_to 'MetaCPAN', 'http://www.metacpan.org/" ],
+                        lines_between => [''],
+                        lines_expected => [ '<a href="http://www.metacpan.org/">MetaCPAN</a>' ],
+                        lines_after => ['',''],
+                    },
+                    {
+                       test_number => 2,
+                       test_name => 'metacpan_1_2',
+                       test_start_line => 12,
+                       lines_before => [''],
+                       lines_template => [ "%= text_field username => placeholder => 'Enter name'"" ],
+                       lines_between => [''],
+                       lines_expected => ['<input name="username" placeholder="Enter name" type="text" /> '],
+                       lines_after => [],
+                    }
+                ],
+        };
+
+And C<$self-E<gt>flatten> returns:
+
+    # Code here
+
+    my $expected_1 = qq{ <a href="http://www.metacpan.org/">MetaCPAN</a> };
+
+    get '/metacpan_1_1' => 'metacpan_1_1';
+
+    $test->get_ok('/metacpan_1_1')->status_is(200)->trimmed_content_is($expected_1, 'Matched trimmed content in metacpan-1.mojo, line 4');
+
+    my $expected_2 = qq{ <input name="username" placeholder="Enter name" type="text" /> };
+
+    get '/metacpan_1_2' => 'metacpan_1_2';
+
+    $test->get_ok('/metacpan_1_2')->status_is(200)->trimmed_content_is($expected_2, 'Matched trimmed content in metacpan-1.mojo, line 12');
+
+    done_testing();
+
+    __DATA__
+
+    @@ metacpan_1_1.html.ep
+
+    %= link_to 'MetaCPAN', 'http://www.metacpan.org/'
+
+    @@ metacpan_1_2.html.ep
+
+    %= text_field username => placeholder => 'Enter name'
+
+And then all that remains is putting in a header. See L<Dist::Zilla::Plugin::Test::CreateFromMojoTemplates>.
 
 =head1 AUTHOR
 
