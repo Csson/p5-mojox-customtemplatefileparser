@@ -1,6 +1,8 @@
 Revision history for MojoX-CustomTemplateFileParser
 
 {{$NEXT}}
+    - Ensure adequate line breaks between templates and 
+      expected (and other line types) in exemplify() output
 
 0.06  2014-09-08 20:38:25 CEST
     - Added test_index attribute for looking up tests by number
