@@ -175,7 +175,7 @@ And `$self->flatten` returns:
 
 The easiest way to put this to use is with [Dist::Zilla::Plugin::Test::CreateFromMojoTemplates](https://metacpan.org/pod/Dist::Zilla::Plugin::Test::CreateFromMojoTemplates).
 
-`<$self-`exemplify(1)> returns:
+`$self->exemplify(1)` returns:
 
     %= link_to 'MetaCPAN', 'http://www.metacpan.org/'
 

@@ -440,7 +440,7 @@ And C<$self-E<gt>flatten> returns:
 The easiest way to put this to use is with L<Dist::Zilla::Plugin::Test::CreateFromMojoTemplates>.
 
 
-C<<$self->exemplify(1)> returns:
+C<$self-E<gt>exemplify(1)> returns:
 
     %= link_to 'MetaCPAN', 'http://www.metacpan.org/'
 
