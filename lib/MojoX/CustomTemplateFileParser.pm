@@ -195,6 +195,7 @@ sub _add_test {
         map { $_ =~ s{\[var\]}{$var}g } @{ $copy->{'lines_template'} };
         map { $_ =~ s{\[var\]}{$var}g } @{ $copy->{'lines_expected'} };
         $copy->{'loop_variable'} = $var;
+        $copy->{'test_name'} .= "_$var";
         push @{ $info->{'tests'} } => $copy;
     }
     return;
@@ -345,7 +346,7 @@ Running C<$self-E<gt>parse> will fill C<$self-E<gt>structure> with:
                 lines_template => [ "    %= text_field username => placeholder => 'first'" ],
                 loop => [ 'first', 'name' ],
                 loop_variable => 'first',
-                test_name => 'test_1_2',
+                test_name => 'test_1_2_first',
                 test_number => 2,
                 test_start_line => 12,
             },
@@ -357,7 +358,7 @@ Running C<$self-E<gt>parse> will fill C<$self-E<gt>structure> with:
                 lines_template => [ "    %= text_field username => placeholder => 'name'" ],
                 loop => [ 'first', 'name' ],
                 loop_variable => 'name',
-                test_name => 'test_1_2',
+                test_name => 'test_1_2_name',
                 test_number => 2,
                 test_start_line => 12,
             }

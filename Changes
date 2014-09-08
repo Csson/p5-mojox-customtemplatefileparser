@@ -1,6 +1,8 @@
 Revision history for MojoX-CustomTemplateFileParser
 
 {{$NEXT}}
+	- Fixed a bug where the last variable in a looped test sometimes were
+	  checked agains all expected results
 
 0.04  2014-09-07 21:16:41 CEST
 	- Fixed a bug where the last test in a file sometimes were generated twice
