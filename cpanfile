@@ -1,4 +1,4 @@
-requires 'perl', '5.010';
+requires 'perl', '5.010_001';
 
 requires 'Mojolicious', '5.00';
 requires 'Path::Tiny', '0.050';
