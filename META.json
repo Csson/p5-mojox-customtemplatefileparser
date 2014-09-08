@@ -39,7 +39,7 @@
             "Mojolicious" : "5.00",
             "Path::Tiny" : "0.050",
             "Storable" : "2.24",
-            "perl" : "v5.10.1"
+            "perl" : "v5.14.0"
          }
       },
       "test" : {
