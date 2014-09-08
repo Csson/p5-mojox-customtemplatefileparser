@@ -8,7 +8,6 @@ on test => sub {
     requires 'Test::More', '0.96';
     requires 'Test::Deep', '0.110';
     requires 'Data::Dumper', '2.130';
-    requires 'MojoX::CustomTemplateFileParser', '0.04';
 };
 
 

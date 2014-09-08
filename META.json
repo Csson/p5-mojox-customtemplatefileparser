@@ -45,7 +45,6 @@
       "test" : {
          "requires" : {
             "Data::Dumper" : "2.130",
-            "MojoX::CustomTemplateFileParser" : "0.04",
             "Test::Deep" : "0.110",
             "Test::More" : "0.96"
          }
