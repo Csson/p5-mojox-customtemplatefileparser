@@ -435,7 +435,16 @@ And C<$self-E<gt>flatten> returns:
         %= text_field username => placeholder => 'name'
 
 
-The easiest way to is it is with L<Dist::Zilla::Plugin::Test::CreateFromMojoTemplates>.
+The easiest way to put this to use is with L<Dist::Zilla::Plugin::Test::CreateFromMojoTemplates>.
+
+
+C<<$self->exemplify(1)> returns:
+
+    %= link_to 'MetaCPAN', 'http://www.metacpan.org/'
+
+    <a href="http://www.metacpan.org/">MetaCPAN</a>
+
+The easiest way to put that to use is with L<Dist::Zilla::Plugin::InsertExample::FromMojoTemplates>.
 
 =head1 AUTHOR
 
