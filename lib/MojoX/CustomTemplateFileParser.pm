@@ -11,6 +11,7 @@ use Storable qw/dclone/;
 
 has path => undef;
 has structure => sub { { } };
+has test_index => sub { { } };
 
 sub flatten {
     my $self = shift;
@@ -53,6 +54,21 @@ sub flatten {
     return join ("\n\n" => @parsed) . "\n";
 }
 
+sub exemplify {
+    my $self = shift;
+    my $test_index = shift;
+
+    my $tests_at_index = $self->test_index->{ $test_index };
+    my @out = ();
+
+    foreach my $test (@{ $tests_at_index }) {
+        push @out => @{ $test->{'lines_before'} }, @{ $test->{'lines_template'} }, @{ $test->{'lines_between'} }, @{ $test->{'lines_expected' } }, @{ $test->{'lines_after'} };
+    }
+
+    return join "\n" => @out;
+
+}
+
 sub parse {
     my $self = shift;
     my $baseurl = $self->_get_baseurl;
@@ -67,7 +83,8 @@ sub parse {
 
     my $info = {
         head_lines => [],
-        tests      => []
+        tests      => [],
+        indexed    => {},
     };
     my $test = {};
 
@@ -169,16 +186,21 @@ sub parse {
 
     $self->_add_test($info, $test);
 
+    $self->test_index(delete $info->{'indexed'});
     $self->structure($info);
 
     return $self;
+}
+
+sub test_count {
+    my $self = shift;
+    return keys %{ $self->{'test_index'} };
 }
 
 sub _add_test {
     my $self = shift;
     my $info = shift;
     my $test = shift;
-    use Data::Dumper 'Dumper';
 
     #* Nothing to test
     return if !scalar @{ $test->{'lines_template'} } || $test->{'skip'};
@@ -186,8 +208,10 @@ sub _add_test {
     #* No loop, just add it
     if(!scalar @{ $test->{'loop'} }) {
         push @{ $info->{'tests'} } => $test;
+        $info->{'indexed'}{ $test->{'test_number'} } = [ $test ];
         return;
     }
+    $info->{'indexed'}{ $test->{'test_number'} } = [ ];
 
     foreach my $var (@{ $test->{'loop'} }) {
         my $copy = dclone $test;
@@ -197,6 +221,7 @@ sub _add_test {
         $copy->{'loop_variable'} = $var;
         $copy->{'test_name'} .= "_$var";
         push @{ $info->{'tests'} } => $copy;
+        push @{ $info->{'indexed'}{ $copy->{'test_number'} } } => $copy;
     }
     return;
 
