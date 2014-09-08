@@ -266,6 +266,8 @@ __END__
 
 MojoX::CustomTemplateFileParser - Parses a custom Mojo template file format
 
+=for html <p><a style="float: left;" href="https://travis-ci.org/Csson/p5-mojox-customtemplatefileparser"><img src="https://travis-ci.org/Csson/p5-mojox-customtemplatefileparser.svg?branch=master">&nbsp;</a>
+
 =head1 SYNOPSIS
 
   use MojoX::CustomTemplateFileParser;

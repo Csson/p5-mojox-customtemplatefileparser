@@ -2,6 +2,10 @@
 
 MojoX::CustomTemplateFileParser - Parses a custom Mojo template file format
 
+<div>
+    <p><a style="float: left;" href="https://travis-ci.org/Csson/p5-mojox-customtemplatefileparser"><img src="https://travis-ci.org/Csson/p5-mojox-customtemplatefileparser.svg?branch=master">&nbsp;</a>
+</div>
+
 # SYNOPSIS
 
     use MojoX::CustomTemplateFileParser;
@@ -169,7 +173,15 @@ And `$self->flatten` returns:
 
         %= text_field username => placeholder => 'name'
 
-The easiest way to is it is with [Dist::Zilla::Plugin::Test::CreateFromMojoTemplates](https://metacpan.org/pod/Dist::Zilla::Plugin::Test::CreateFromMojoTemplates).
+The easiest way to put this to use is with [Dist::Zilla::Plugin::Test::CreateFromMojoTemplates](https://metacpan.org/pod/Dist::Zilla::Plugin::Test::CreateFromMojoTemplates).
+
+`<$self-`exemplify(1)> returns:
+
+    %= link_to 'MetaCPAN', 'http://www.metacpan.org/'
+
+    <a href="http://www.metacpan.org/">MetaCPAN</a>
+
+The easiest way to put that to use is with [Dist::Zilla::Plugin::InsertExample::FromMojoTemplates](https://metacpan.org/pod/Dist::Zilla::Plugin::InsertExample::FromMojoTemplates).
 
 # AUTHOR
 
