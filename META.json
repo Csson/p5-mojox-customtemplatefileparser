@@ -44,7 +44,7 @@
       },
       "test" : {
          "requires" : {
-            "Data::Dumper" : "2.130",
+            "Data::Dump::Streamer" : "2.37",
             "Test::Deep" : "0.110",
             "Test::More" : "0.96"
          }
