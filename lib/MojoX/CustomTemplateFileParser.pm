@@ -492,7 +492,7 @@ The second argument is a boolean that only exemplify the test if it is marked as
 The easiest way to put exemplify to use is with L<Dist::Zilla::Plugin::InsertExample::FromMojoTemplates>.
 
 
-B<$self-E<gt>htmlify())=>
+B<$self-E<gt>htmlify()>
 
 This method returns all tests in the source file in a string ready to be put into an html file that can be used as an example file. It is currently hardcoded to use a L<Bootstrap|http://www.getbootstrap.com/> format.
 
