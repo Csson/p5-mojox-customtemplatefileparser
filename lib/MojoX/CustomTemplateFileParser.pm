@@ -5,6 +5,7 @@ use warnings;
 use 5.10.1;
 our $VERSION = '0.07';
 
+use HTML::Entities;
 use Mojo::Base -base;
 use Path::Tiny();
 use Storable qw/dclone/;
@@ -53,6 +54,27 @@ sub flatten {
 
     return join ("\n\n" => @parsed) . "\n";
 }
+
+sub htmlify {
+    my $self = shift;
+
+    my @out = ();
+    my $tests = $self->structure->{'tests'};
+
+    foreach my $test (@{ $tests }) {
+        push @out => (qq{<div class="panel panel-default"><div class="panel-body">});
+        push @out => (@{ $test->{'lines_before'} }) if scalar @{ $test->{'lines_before'} };
+        push @out => ('<pre>', HTML::Entities::encode_entities(join("\n" => @{ $test->{'lines_template'} })), '</pre>');
+        push @out => (@{ $test->{'lines_between'} }) if scalar @{ $test->{'lines_between'} };
+        push @out => ('<pre>', HTML::Entities::encode_entities(join("\n" => @{ $test->{'lines_expected'} })), '</pre>');
+        push @out => (@{ $test->{'lines_after'} }, "<hr />") if scalar @{ $test->{'lines_after'} };
+        push @out => (@{ $test->{'lines_expected'} });
+        push @out => (qq{</div></div>});
+    }
+
+    return join '' => @out;
+}
+
 
 sub exemplify {
     my $self = shift;
@@ -468,6 +490,11 @@ C<$self-E<gt>exemplify(1)> returns:
 The second argument is a boolean that only exemplify the test if it is marked as an example in the source file, by using C<==test example==>.
 
 The easiest way to put exemplify to use is with L<Dist::Zilla::Plugin::InsertExample::FromMojoTemplates>.
+
+
+B<$self-E<gt>htmlify())=>
+
+This method returns all tests in the source file in a string ready to be put into an html file that can be used as an example file. It is currently hardcoded to use a L<Bootstrap|http://www.getbootstrap.com/> format.
 
 =head1 AUTHOR
 
