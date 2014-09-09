@@ -1,6 +1,8 @@
 Revision history for MojoX-CustomTemplateFileParser
 
 {{$NEXT}}
+
+0.08  2014-09-09 23:28:44 CEST
     - add support for choosing to exemplify a test only if it is
       marked as an example in the source file
     - Fixed unitialized warning
