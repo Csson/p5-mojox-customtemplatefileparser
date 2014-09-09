@@ -85,12 +85,17 @@ Given a file (`metacpan-1.mojo`) that looks like this:
 
 `no test` on the third test means it is skipped.
 
+**$self->parse**
+
+No arguments.
+
 Running `$self->parse` will fill `$self->structure` with:
 
     {
         head_lines => ['', '# Code here', '', '' ],
         tests => [
             {
+                is_example => 1,
                 lines_after => ['', ''],
                 lines_before => [''],
                 lines_between => [''],
@@ -103,6 +108,7 @@ Running `$self->parse` will fill `$self->structure` with:
                 test_start_line => 4,
             },
             {
+                is_example => 0,
                 lines_after => ['', ''],
                 lines_before => [''],
                 lines_between => [''],
@@ -115,6 +121,7 @@ Running `$self->parse` will fill `$self->structure` with:
                 test_start_line => 12,
             },
             {
+                is_example => 0,
                 lines_after => ['', ''],
                 lines_before => [''],
                 lines_between => [''],
@@ -128,6 +135,10 @@ Running `$self->parse` will fill `$self->structure` with:
             }
         ]
     }
+
+**$self->flatten()**
+
+No arguments.
 
 And `$self->flatten` returns:
 
@@ -175,13 +186,17 @@ And `$self->flatten` returns:
 
 The easiest way to put this to use is with [Dist::Zilla::Plugin::Test::CreateFromMojoTemplates](https://metacpan.org/pod/Dist::Zilla::Plugin::Test::CreateFromMojoTemplates).
 
+**$self->exemplify($testnumber, $only\_if\_example)**
+
 `$self->exemplify(1)` returns:
 
     %= link_to 'MetaCPAN', 'http://www.metacpan.org/'
 
     <a href="http://www.metacpan.org/">MetaCPAN</a>
 
-The easiest way to put that to use is with [Dist::Zilla::Plugin::InsertExample::FromMojoTemplates](https://metacpan.org/pod/Dist::Zilla::Plugin::InsertExample::FromMojoTemplates).
+The second argument is a boolean that only exemplify the test if it is marked as an example in the source file, by using `==test example==`.
+
+The easiest way to put exemplify to use is with [Dist::Zilla::Plugin::InsertExample::FromMojoTemplates](https://metacpan.org/pod/Dist::Zilla::Plugin::InsertExample::FromMojoTemplates).
 
 # AUTHOR
 

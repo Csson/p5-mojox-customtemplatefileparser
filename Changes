@@ -1,6 +1,9 @@
 Revision history for MojoX-CustomTemplateFileParser
 
 {{$NEXT}}
+    - add support for choosing to exemplify a test only if it is
+      marked as an example in the source file
+    - Fixed unitialized warning
 
 0.07  2014-09-08 22:10:33 CEST
     - Ensure adequate line breaks between templates and 
