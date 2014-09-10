@@ -22,11 +22,13 @@ my $expected = {
                                                 ],
                              lines_before    => [ 'Text before the test' ],
                              lines_between   => [ 'Text between template and expected' ],
-                             lines_expected  => [ '',
+                             lines_expected  => [
+                                                  '',
                                                   '    <a href="http://www.metacpan.org/">MetaCPAN</a>',
                                                   ''
                                                 ],
-                             lines_template  => [ '',
+                             lines_template  => [
+                                                  '',
                                                   '    %= link_to \'MetaCPAN\', \'http://www.metacpan.org/\'',
                                                   ''
                                                 ],
@@ -39,13 +41,15 @@ my $expected = {
                            {
                              is_example      => 0,
                              lines_after     => [],
-                             lines_before    => [],
+                             lines_before    => [ 'More text' ],
                              lines_between   => [],
-                             lines_expected  => [ '',
+                             lines_expected  => [
+                                                  '',
                                                   '    <input name="username" placeholder="first" type="text" />',
                                                   ''
                                                 ],
-                             lines_template  => [ '',
+                             lines_template  => [
+                                                  '',
                                                   '    %= text_field username => placeholder => \'first\'',
                                                   ''
                                                 ],
@@ -61,13 +65,15 @@ my $expected = {
                            {
                              is_example      => 0,
                              lines_after     => [],
-                             lines_before    => [],
+                             lines_before    => [ 'More text' ],
                              lines_between   => [],
-                             lines_expected  => [ '',
+                             lines_expected  => [
+                                                  '',
                                                   '    <input name="username" placeholder="name" type="text" />',
                                                   ''
                                                 ],
-                             lines_template  => [ '',
+                             lines_template  => [
+                                                  '',
                                                   '    %= text_field username => placeholder => \'name\'',
                                                   ''
                                                 ],
