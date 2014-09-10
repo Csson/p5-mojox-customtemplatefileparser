@@ -1,4 +1,4 @@
-package MojoX::CustomTemplateFileParser::Plugin::ToTest;
+package MojoX::CustomTemplateFileParser::Plugin::To::Test;
 
 use strict;
 use warnings;
@@ -25,7 +25,7 @@ sub to_test {
 
         my $expected_var = sprintf '$expected_%s%s' => $test->{'test_name'}, ($test->{'loop_variable'} ? "_$test->{'loop_variable'}" : '');
 
-        push @parsed => "#** test from $filename, line $test->{'test_start_line'}" . ($test->{'loop_variable'} ? ", loop: $test->{'loop_variable'}" : '');
+        push @parsed => "\n#** test from $filename, line $test->{'test_start_line'}" . ($test->{'loop_variable'} ? ", loop: $test->{'loop_variable'}" : '');
         push @parsed => sprintf 'my %s = qq{ %s };' => $expected_var, join "\n" => @{ $test->{'lines_expected'} };
 
         push @parsed => sprintf q{get '/%s' => '%s';} => $test->{'test_name'}, $test->{'test_name'};

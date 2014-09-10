@@ -1,4 +1,4 @@
-package MojoX::CustomTemplateFileParser::Plugin::ToPod;
+package MojoX::CustomTemplateFileParser::Plugin::To::Pod;
 
 use strict;
 use warnings;

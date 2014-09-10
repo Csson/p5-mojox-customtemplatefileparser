@@ -1,4 +1,4 @@
-package MojoX::CustomTemplateFileParser::Plugin::ToTest;
+package MojoX::CustomTemplateFileParser::Plugin::To::Test;
 
 use strict;
 use warnings;

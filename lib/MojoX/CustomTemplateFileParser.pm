@@ -5,11 +5,12 @@ use warnings;
 use 5.10.1;
 our $VERSION = '0.08';
 
+use Moose;
+with 'MooseX::Object::Pluggable';
+
 use HTML::Entities;
 use Path::Tiny();
 use Storable qw/dclone/;
-use Moose;
-with 'MooseX::Object::Pluggable';
 
 has path => (
     is => 'ro',
@@ -26,101 +27,18 @@ has test_index => (
     isa => 'HashRef',
     default => sub { { } },
 );
-has plugins => (
+has output => (
     is => 'ro',
     isa => 'ArrayRef',
     default => sub { [ ] },
 );
 
-
-sub flatten {
-    my $self = shift;
-    my $baseurl = $self->_get_baseurl;
-    my $filename = $self->_get_filename;
-
-    if(!scalar keys %{ $self->structure }) {
-        #$self->parse;
-    }
-    my $info = $self->structure;
-
-    my @parsed = join "\n" => @{ $info->{'head_lines'} };
-
-    TEST:
-    foreach my $test (@{ $info->{'tests'} }) {
-        next TEST if !scalar @{ $test->{'lines_template'} };
-
-        my $expected_var = sprintf '$expected_%s%s' => $test->{'test_name'}, ($test->{'loop_variable'} ? "_$test->{'loop_variable'}" : '');
-
-        push @parsed => "#** test from $filename, line $test->{'test_start_line'}" . ($test->{'loop_variable'} ? ", loop: $test->{'loop_variable'}" : '');
-        push @parsed => sprintf 'my %s = qq{ %s };' => $expected_var, join "\n" => @{ $test->{'lines_expected'} };
-
-        push @parsed => sprintf q{get '/%s' => '%s';} => $test->{'test_name'}, $test->{'test_name'};
-        push @parsed => sprintf q{$test->get_ok('/%s')->status_is(200)->trimmed_content_is(%s, '%s');}
-                                => $test->{'test_name'}, $expected_var, sprintf qq{Matched trimmed content in $filename, line $test->{'test_start_line'}%s}
-                                                                                => $test->{'loop_variable'} ? ", loop: $test->{'loop_variable'}" : '';
-    }
-
-    push @parsed => 'done_testing();';
-    push @parsed => '__DATA__';
-
-
-    foreach my $test (@{ $info->{'tests'} }) {
-        next TEST if !scalar @{ $test->{'lines_template'} };
-
-        push @parsed => sprintf '@@ %s.html.ep' => $test->{'test_name'};
-        push @parsed => join "\n" => @{ $test->{'lines_template'} };
-    }
-
-    return join ("\n\n" => @parsed) . "\n";
-}
-
-sub htmlify {
-    my $self = shift;
-
-    my @out = ();
-    my $tests = $self->structure->{'tests'};
-
-    foreach my $test (@{ $tests }) {
-        push @out => (qq{<div class="panel panel-default"><div class="panel-body">});
-        push @out => (@{ $test->{'lines_before'} }) if scalar @{ $test->{'lines_before'} };
-        push @out => ('<pre>', HTML::Entities::encode_entities(join("\n" => @{ $test->{'lines_template'} })), '</pre>');
-        push @out => (@{ $test->{'lines_between'} }) if scalar @{ $test->{'lines_between'} };
-        push @out => ('<pre>', HTML::Entities::encode_entities(join("\n" => @{ $test->{'lines_expected'} })), '</pre>');
-        push @out => (@{ $test->{'lines_after'} }, "<hr />") if scalar @{ $test->{'lines_after'} };
-        push @out => (@{ $test->{'lines_expected'} });
-        push @out => (qq{</div></div>});
-    }
-
-    return join '' => @out;
-}
-
-
-sub exemplify {
-    my $self = shift;
-    my $test_index = shift;
-    my $want_all_examples = shift || 0;
-
-    my $tests_at_index = $self->test_index->{ $test_index };
-    my @out = ();
-
-    TEST:
-    foreach my $test (@{ $tests_at_index }) {
-        next TEST if $want_all_examples && !$test->{'is_example'};
-        push @out => @{ $test->{'lines_before'} }, "\n", @{ $test->{'lines_template'} }, "\n", @{ $test->{'lines_between'} }, "\n", @{ $test->{'lines_expected' } }, "\n", @{ $test->{'lines_after'} };
-    }
-
-    my $out = join "\n" => @out;
-    $out =~ s{\n\n\n+}{\n\n}g;
-
-    return $out;
-
-}
-
 sub BUILD {
     my $self = shift;
     $self->_parse;
-    foreach my $plugin (@{ $self->plugins } ) {
-     #   $self->load_plugin($plugin);
+
+    foreach my $plugin (@{ $self->output } ) {
+        $self->load_plugin("To::$plugin");
     }
 }
 
