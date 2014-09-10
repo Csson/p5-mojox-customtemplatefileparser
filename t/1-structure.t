@@ -16,16 +16,17 @@ my $expected = {
            tests      => [
                            {
                              is_example      => 1,
-                             lines_after     => [],
-                             lines_before    => [],
-                             lines_between   => [],
-                             lines_expected  => [
-                                                  '',
+                             lines_after     => [
+                                                  'Text after expected.',
+                                                  ''
+                                                ],
+                             lines_before    => [ 'Text before the test' ],
+                             lines_between   => [ 'Text between template and expected' ],
+                             lines_expected  => [ '',
                                                   '    <a href="http://www.metacpan.org/">MetaCPAN</a>',
                                                   ''
                                                 ],
-                             lines_template  => [
-                                                  '',
+                             lines_template  => [ '',
                                                   '    %= link_to \'MetaCPAN\', \'http://www.metacpan.org/\'',
                                                   ''
                                                 ],
@@ -40,13 +41,11 @@ my $expected = {
                              lines_after     => [],
                              lines_before    => [],
                              lines_between   => [],
-                             lines_expected  => [
-                                                  '',
+                             lines_expected  => [ '',
                                                   '    <input name="username" placeholder="first" type="text" />',
                                                   ''
                                                 ],
-                             lines_template  => [
-                                                  '',
+                             lines_template  => [ '',
                                                   '    %= text_field username => placeholder => \'first\'',
                                                   ''
                                                 ],
@@ -57,20 +56,18 @@ my $expected = {
                              loop_variable   => 'first',
                              test_name       => 'test_1_2_first',
                              test_number     => 2,
-                             test_start_line => 12
+                             test_start_line => 15
                            },
                            {
                              is_example      => 0,
                              lines_after     => [],
                              lines_before    => [],
                              lines_between   => [],
-                             lines_expected  => [
-                                                  '',
+                             lines_expected  => [ '',
                                                   '    <input name="username" placeholder="name" type="text" />',
                                                   ''
                                                 ],
-                             lines_template  => [
-                                                  '',
+                             lines_template  => [ '',
                                                   '    %= text_field username => placeholder => \'name\'',
                                                   ''
                                                 ],
@@ -81,7 +78,7 @@ my $expected = {
                              loop_variable   => 'name',
                              test_name       => 'test_1_2_name',
                              test_number     => 2,
-                             test_start_line => 12
+                             test_start_line => 15
                            }
                          ]
          };
