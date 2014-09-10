@@ -2,12 +2,15 @@
 # Code here
 
 ==test example==
+Text before the test
 --t--
     %= link_to 'MetaCPAN', 'http://www.metacpan.org/'
 --t--
+Text between template and expected
 --e--
     <a href="http://www.metacpan.org/">MetaCPAN</a>
 --e--
+Text after expected.
 
 ==test loop(first name)==
 --t--
