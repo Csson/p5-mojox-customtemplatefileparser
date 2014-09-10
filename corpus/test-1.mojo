@@ -13,6 +13,7 @@ Text between template and expected
 Text after expected.
 
 ==test loop(first name)==
+More text
 --t--
     %= text_field username => placeholder => '[var]'
 --t--
