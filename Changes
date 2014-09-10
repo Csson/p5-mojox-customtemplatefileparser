@@ -1,6 +1,8 @@
 Revision history for MojoX-CustomTemplateFileParser
 
 {{$NEXT}}
+
+0.09  2014-09-10 16:50:23 CEST
     - Created a plugin architecture which allows for easy customization of output.
     - Moved flatten() into ::Plugin::To::Test
     - Moved exemplify() into ::Plugin::To::Pod

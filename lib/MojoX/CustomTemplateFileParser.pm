@@ -3,7 +3,7 @@ package MojoX::CustomTemplateFileParser;
 use strict;
 use warnings;
 use 5.10.1;
-our $VERSION = '0.08';
+our $VERSION = '0.09';
 
 use Moose;
 with 'MooseX::Object::Pluggable';
