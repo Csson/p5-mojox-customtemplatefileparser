@@ -13,7 +13,8 @@ on test => sub {
 };
 
 on build => sub {
-    requires 'Test::EOL', '1.5',
-    requires 'Test::Pod', '1.45',
+    requires 'Test::NoTabs', '1.3';
+    requires 'Test::EOL', '1.5';
+    requires 'Test::Pod', '1.45';
 }
 
