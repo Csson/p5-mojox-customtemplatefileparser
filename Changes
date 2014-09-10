@@ -1,6 +1,8 @@
 Revision history for MojoX-CustomTemplateFileParser
 
 {{$NEXT}}
+
+0.10  2014-09-10 21:42:50 CEST
     - Bugfix: Lines meant to be parsed between test and expected could end up in expected
     - Bugfix: Malformed POD output near =begin/end html
 
