@@ -6,13 +6,32 @@ use 5.10.1;
 our $VERSION = '0.08';
 
 use HTML::Entities;
-use Mojo::Base -base;
 use Path::Tiny();
 use Storable qw/dclone/;
+use Moose;
+with 'MooseX::Object::Pluggable';
 
-has path => undef;
-has structure => sub { { } };
-has test_index => sub { { } };
+has path => (
+    is => 'ro',
+    isa => 'Str',
+    required => 1,
+);
+has structure => (
+    is => 'rw',
+    isa => 'HashRef',
+    default => sub { { } },
+);
+has test_index => (
+    is => 'rw',
+    isa => 'HashRef',
+    default => sub { { } },
+);
+has plugins => (
+    is => 'ro',
+    isa => 'ArrayRef',
+    default => sub { [ ] },
+);
+
 
 sub flatten {
     my $self = shift;
@@ -20,7 +39,7 @@ sub flatten {
     my $filename = $self->_get_filename;
 
     if(!scalar keys %{ $self->structure }) {
-        $self->parse;
+        #$self->parse;
     }
     my $info = $self->structure;
 
@@ -97,7 +116,15 @@ sub exemplify {
 
 }
 
-sub parse {
+sub BUILD {
+    my $self = shift;
+    $self->_parse;
+    foreach my $plugin (@{ $self->plugins } ) {
+     #   $self->load_plugin($plugin);
+    }
+}
+
+sub _parse {
     my $self = shift;
     my $baseurl = $self->_get_baseurl;
     my @lines = split /\n/ => Path::Tiny::path($self->path)->slurp;
@@ -338,7 +365,7 @@ Given a file (C<metacpan-1.mojo>) that looks like this:
 
     # Code here
 
-    ==test==
+    ==test example==
     --t--
         %= link_to 'MetaCPAN', 'http://www.metacpan.org/'
     --t--
