@@ -8,49 +8,83 @@ my $parser = MojoX::CustomTemplateFileParser->new(path => 'corpus/test-1.mojo');
 my $found = $parser->structure;
 
 my $expected = {
-    head_lines => ['', '# Code here', '', '' ],
-    tests => [
-        {
-            is_example => 1,
-            lines_after => ['', ''],
-            lines_before => [''],
-            lines_between => [''],
-            lines_expected => [ '    <a href="http://www.metacpan.org/">MetaCPAN</a>' ],
-            lines_template => [ "    %= link_to 'MetaCPAN', 'http://www.metacpan.org/'" ],
-            loop => [],
-            loop_variable => undef,
-            test_name => 'test_1_1',
-            test_number => 1,
-            test_start_line => 4,
-        },
-        {
-            is_example => 0,
-            lines_after => ['', ''],
-            lines_before => [''],
-            lines_between => [''],
-            lines_expected => [ '    <input name="username" placeholder="first" type="text" />' ],
-            lines_template => [ "    %= text_field username => placeholder => 'first'" ],
-            loop => [ 'first', 'name' ],
-            loop_variable => 'first',
-            test_name => 'test_1_2_first',
-            test_number => 2,
-            test_start_line => 12,
-        },
-        {
-            is_example => 0,
-            lines_after => ['', ''],
-            lines_before => [''],
-            lines_between => [''],
-            lines_expected => [ '    <input name="username" placeholder="name" type="text" />' ],
-            lines_template => [ "    %= text_field username => placeholder => 'name'" ],
-            loop => [ 'first', 'name' ],
-            loop_variable => 'name',
-            test_name => 'test_1_2_name',
-            test_number => 2,
-            test_start_line => 12,
-        }
-    ]
-};
+           head_lines => [
+                           '',
+                           '# Code here',
+                           ( '' ) x 2
+                         ],
+           tests      => [
+                           {
+                             is_example      => 1,
+                             lines_after     => [],
+                             lines_before    => [],
+                             lines_between   => [],
+                             lines_expected  => [
+                                                  '',
+                                                  '    <a href="http://www.metacpan.org/">MetaCPAN</a>',
+                                                  ''
+                                                ],
+                             lines_template  => [
+                                                  '',
+                                                  '    %= link_to \'MetaCPAN\', \'http://www.metacpan.org/\'',
+                                                  ''
+                                                ],
+                             loop            => [],
+                             loop_variable   => undef,
+                             test_name       => 'test_1_1',
+                             test_number     => 1,
+                             test_start_line => 4
+                           },
+                           {
+                             is_example      => 0,
+                             lines_after     => [],
+                             lines_before    => [],
+                             lines_between   => [],
+                             lines_expected  => [
+                                                  '',
+                                                  '    <input name="username" placeholder="first" type="text" />',
+                                                  ''
+                                                ],
+                             lines_template  => [
+                                                  '',
+                                                  '    %= text_field username => placeholder => \'first\'',
+                                                  ''
+                                                ],
+                             loop            => [
+                                                  'first',
+                                                  'name'
+                                                ],
+                             loop_variable   => 'first',
+                             test_name       => 'test_1_2_first',
+                             test_number     => 2,
+                             test_start_line => 12
+                           },
+                           {
+                             is_example      => 0,
+                             lines_after     => [],
+                             lines_before    => [],
+                             lines_between   => [],
+                             lines_expected  => [
+                                                  '',
+                                                  '    <input name="username" placeholder="name" type="text" />',
+                                                  ''
+                                                ],
+                             lines_template  => [
+                                                  '',
+                                                  '    %= text_field username => placeholder => \'name\'',
+                                                  ''
+                                                ],
+                             loop            => [
+                                                  'first',
+                                                  'name'
+                                                ],
+                             loop_variable   => 'name',
+                             test_name       => 'test_1_2_name',
+                             test_number     => 2,
+                             test_start_line => 12
+                           }
+                         ]
+         };
 
 cmp_deeply($found, $expected, "Parsed correctly") || warn Dumper $found;
 
