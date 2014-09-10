@@ -5,7 +5,7 @@ use Data::Dump::Streamer 'Dumper';
 use MojoX::CustomTemplateFileParser;
 
 my $parser = MojoX::CustomTemplateFileParser->new(path => 'corpus/test-1.mojo');
-my $found = $parser->parse->structure;
+my $found = $parser->structure;
 
 my $expected = {
     head_lines => ['', '# Code here', '', '' ],
