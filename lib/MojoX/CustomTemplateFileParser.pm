@@ -120,7 +120,7 @@ sub _parse {
                 $environment = 'expected';
                 next LINE;
             }
-            push @{ $test->{'lines_expected'} } => $line;
+            push @{ $test->{'lines_between'} } => $line;
             next LINE;
         }
         if($environment eq 'expected') {
