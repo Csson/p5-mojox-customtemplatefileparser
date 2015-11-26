@@ -118,19 +118,19 @@
    "provides" : {
       "MojoX::CustomTemplateFileParser" : {
          "file" : "lib/MojoX/CustomTemplateFileParser.pm",
-         "version" : "0.1001"
+         "version" : "0.1003"
       },
       "MojoX::CustomTemplateFileParser::Plugin::To::Html" : {
          "file" : "lib/MojoX/CustomTemplateFileParser/Plugin/To/Html.pm",
-         "version" : "0.1001"
+         "version" : "0.1003"
       },
       "MojoX::CustomTemplateFileParser::Plugin::To::Pod" : {
          "file" : "lib/MojoX/CustomTemplateFileParser/Plugin/To/Pod.pm",
-         "version" : "0.1001"
+         "version" : "0.1003"
       },
       "MojoX::CustomTemplateFileParser::Plugin::To::Test" : {
          "file" : "lib/MojoX/CustomTemplateFileParser/Plugin/To/Test.pm",
-         "version" : "0.1001"
+         "version" : "0.1003"
       }
    },
    "release_status" : "stable",
@@ -145,7 +145,7 @@
          "web" : "https://github.com/Csson/p5-mojox-customtemplatefileparser"
       }
    },
-   "version" : "0.1001",
+   "version" : "0.1003",
    "x_deprecated" : 1
 }
 

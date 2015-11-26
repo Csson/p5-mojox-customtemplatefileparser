@@ -6,7 +6,7 @@ MojoX::CustomTemplateFileParser - Parses a custom Mojo template file format (dep
 
 # VERSION
 
-Version 0.1001, released 2015-11-26.
+Version 0.1003, released 2015-11-26.
 
 # SYNOPSIS
 
