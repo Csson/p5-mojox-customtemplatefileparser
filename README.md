@@ -2,7 +2,7 @@
 
 MojoX::CustomTemplateFileParser - Parses a custom Mojo template file format (deprecated)
 
-![Requires Perl 5.14+](https://img.shields.io/badge/perl-5.14+-brightgreen.svg) [![Travis status](https://api.travis-ci.org/Csson/p5-mojox-customtemplatefileparser.svg?branch=master)](https://travis-ci.org/Csson/p5-mojox-customtemplatefileparser)
+![Requires Perl 5.14](https://img.shields.io/badge/perl-5.14-brightgreen.svg) [![Travis status](https://api.travis-ci.org/Csson/p5-mojox-customtemplatefileparser.svg?branch=master)](https://travis-ci.org/Csson/p5-mojox-customtemplatefileparser)
 
 # VERSION
 
