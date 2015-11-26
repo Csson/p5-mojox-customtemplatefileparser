@@ -1,10 +1,12 @@
 # NAME
 
-MojoX::CustomTemplateFileParser - Parses a custom Mojo template file format
+MojoX::CustomTemplateFileParser - Parses a custom Mojo template file format (deprecated)
 
-<div>
-    <p><a style="float: left;" href="https://travis-ci.org/Csson/p5-mojox-customtemplatefileparser"><img src="https://travis-ci.org/Csson/p5-mojox-customtemplatefileparser.svg?branch=master">&nbsp;</a>
-</div>
+![Requires Perl 5.14+](https://img.shields.io/badge/perl-5.14+-brightgreen.svg) [![Travis status](https://api.travis-ci.org/Csson/p5-mojox-customtemplatefileparser.svg?branch=master)](https://travis-ci.org/Csson/p5-mojox-customtemplatefileparser)
+
+# VERSION
+
+Version 0.1001, released 2015-11-26.
 
 # SYNOPSIS
 
@@ -18,7 +20,7 @@ MojoX::CustomTemplateFileParser - Parses a custom Mojo template file format
 
 # STATUS
 
-Unstable.
+Deprecated. Replaced by [Stenciller](https://metacpan.org/pod/Stenciller).
 
 # DESCRIPTION
 
@@ -55,15 +57,21 @@ Currently available plugins:
 - [Dist::Zilla::Plugin::Test::CreateFromMojoTemplates](https://metacpan.org/pod/Dist::Zilla::Plugin::Test::CreateFromMojoTemplates)
 - [Dist::Zilla::Plugin::InsertExample::FromMojoTemplates](https://metacpan.org/pod/Dist::Zilla::Plugin::InsertExample::FromMojoTemplates)
 
+# SOURCE
+
+[https://github.com/Csson/p5-mojox-customtemplatefileparser](https://github.com/Csson/p5-mojox-customtemplatefileparser)
+
+# HOMEPAGE
+
+[https://metacpan.org/release/MojoX-CustomTemplateFileParser](https://metacpan.org/release/MojoX-CustomTemplateFileParser)
+
 # AUTHOR
 
 Erik Carlsson <info@code301.com>
 
-# COPYRIGHT
+# COPYRIGHT AND LICENSE
 
-Copyright 2014- Erik Carlsson
+This software is copyright (c) 2015 by Erik Carlsson.
 
-# LICENSE
-
-This library is free software; you can redistribute it and/or modify
-it under the same terms as Perl itself.
+This is free software; you can redistribute it and/or modify it under
+the same terms as the Perl 5 programming language system itself.

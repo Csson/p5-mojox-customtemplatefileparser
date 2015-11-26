@@ -3,7 +3,9 @@ package MojoX::CustomTemplateFileParser::Plugin::To::Test;
 use strict;
 use warnings;
 use 5.10.1;
-our $VERSION = '0.10';
+
+# VERSION
+# ABSTRACT: Create tests
 
 use Moose::Role;
 
@@ -50,11 +52,9 @@ sub to_test {
 
 1;
 
-=encoding utf-8
+__END__
 
-=head1 NAME
-
-MojoX::CustomTemplateFileParser::Plugin::To::Test - Create tests
+=pod
 
 =head1 SYNOPSIS
 
@@ -76,27 +76,9 @@ It returns a string ready to be put in a L<Test::More> file.
 
 =head1 SEE ALSO
 
-=over 4
-
-=item * L<Dist::Zilla::Plugin::Test::CreateFromMojoTemplates>
-
-=item * L<MojoX::CustomTemplateFileParser::Plugin::To::Html>
-
-=item * L<MojoX::CustomTemplateFileParser::Plugin::To::Pod>
-
-=back
-
-=head1 AUTHOR
-
-Erik Carlsson E<lt>info@code301.comE<gt>
-
-=head1 COPYRIGHT
-
-Copyright 2014- Erik Carlsson
-
-=head1 LICENSE
-
-This library is free software; you can redistribute it and/or modify
-it under the same terms as Perl itself.
+=for :list
+* L<Dist::Zilla::Plugin::Test::CreateFromMojoTemplates>
+* L<MojoX::CustomTemplateFileParser::Plugin::To::Html>
+* L<MojoX::CustomTemplateFileParser::Plugin::To::Pod>
 
 =cut

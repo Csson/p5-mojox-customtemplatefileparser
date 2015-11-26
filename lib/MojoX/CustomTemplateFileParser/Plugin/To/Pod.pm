@@ -3,7 +3,9 @@ package MojoX::CustomTemplateFileParser::Plugin::To::Pod;
 use strict;
 use warnings;
 use 5.10.1;
-our $VERSION = '0.10';
+
+# VERSION
+# ABSTRACT: Create pod
 
 use Moose::Role;
 
@@ -52,12 +54,9 @@ sub to_pod {
 
 1;
 
+__END__
 
-=encoding utf-8
-
-=head1 NAME
-
-MojoX::CustomTemplateFileParser::Plugin::To::Pod - Create pod
+=pod
 
 =head1 SYNOPSIS
 
@@ -77,27 +76,10 @@ This method is added to L<MojoX::CustomTemplateFileParser> objects created with 
 
 =head1 SEE ALSO
 
-=over 4
+=for :list
 
-=item * L<Dist::Zilla::Plugin::InsertExample::FromMojoTemplates>
-
-=item * L<MojoX::CustomTemplateFileParser::Plugin::To::Pod>
-
-=item * L<MojoX::CustomTemplateFileParser::Plugin::To::Test>
-
-=back
-
-=head1 AUTHOR
-
-Erik Carlsson E<lt>info@code301.comE<gt>
-
-=head1 COPYRIGHT
-
-Copyright 2014- Erik Carlsson
-
-=head1 LICENSE
-
-This library is free software; you can redistribute it and/or modify
-it under the same terms as Perl itself.
+* L<Dist::Zilla::Plugin::InsertExample::FromMojoTemplates>
+* L<MojoX::CustomTemplateFileParser::Plugin::To::Pod>
+* L<MojoX::CustomTemplateFileParser::Plugin::To::Test>
 
 =cut

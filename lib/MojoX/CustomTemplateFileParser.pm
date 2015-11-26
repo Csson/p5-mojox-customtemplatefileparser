@@ -3,7 +3,8 @@ package MojoX::CustomTemplateFileParser;
 use strict;
 use warnings;
 use 5.10.1;
-our $VERSION = '0.10';
+# VERSION
+# ABSTRACT: Parses a custom Mojo template file format (deprecated)
 
 use Moose;
 with 'MooseX::Object::Pluggable';
@@ -231,15 +232,10 @@ sub _get_baseurl {
 }
 
 1;
+
 __END__
 
-=encoding utf-8
-
-=head1 NAME
-
-MojoX::CustomTemplateFileParser - Parses a custom Mojo template file format
-
-=for html <p><a style="float: left;" href="https://travis-ci.org/Csson/p5-mojox-customtemplatefileparser"><img src="https://travis-ci.org/Csson/p5-mojox-customtemplatefileparser.svg?branch=master">&nbsp;</a>
+=pod
 
 =head1 SYNOPSIS
 
@@ -253,7 +249,7 @@ MojoX::CustomTemplateFileParser - Parses a custom Mojo template file format
 
 =head1 STATUS
 
-Unstable.
+Deprecated. Replaced by L<Stenciller>.
 
 =head1 DESCRIPTION
 
@@ -281,37 +277,15 @@ No public methods. See plugins for output options.
 
 Currently available plugins:
 
-=over 4
-
-=item * L<MojoX::CustomTemplateFileParser::To::Html>
-
-=item * L<MojoX::CustomTemplateFileParser::To::Pod>
-
-=item * L<MojoX::CustomTemplateFileParser::To::Test>
-
-=back
+=for :list
+* L<MojoX::CustomTemplateFileParser::To::Html>
+* L<MojoX::CustomTemplateFileParser::To::Pod>
+* L<MojoX::CustomTemplateFileParser::To::Test>
 
 =head1 SEE ALSO
 
-=over 4
-
-=item * L<Dist::Zilla::Plugin::Test::CreateFromMojoTemplates>
-
-=item * L<Dist::Zilla::Plugin::InsertExample::FromMojoTemplates>
-
-=back
-
-=head1 AUTHOR
-
-Erik Carlsson E<lt>info@code301.comE<gt>
-
-=head1 COPYRIGHT
-
-Copyright 2014- Erik Carlsson
-
-=head1 LICENSE
-
-This library is free software; you can redistribute it and/or modify
-it under the same terms as Perl itself.
+=for :list
+* L<Dist::Zilla::Plugin::Test::CreateFromMojoTemplates>
+* L<Dist::Zilla::Plugin::InsertExample::FromMojoTemplates>
 
 =cut
